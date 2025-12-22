@@ -487,128 +487,126 @@
 }
 
 /* TALL RECTANGLE ZONE (0.33 - 0.75 aspect ratio)
-   Sidebar-style - Focus on big temperature, minimal details
-   PRIORITY: Temperature + location + minimal details */
+   Sidebar-style - Same layout as Extreme Tall
+   PRIORITY: Temperature + location + forecast */
 @container weather-zone (aspect-ratio < 0.75) and (aspect-ratio >= 0.33) {
   .weather-content {
-    padding: clamp(1rem, 2%, 1.5rem);
-    gap: clamp(0.75rem, 1.5vh, 1.25rem);
+    padding: clamp(2rem, 4%, 3rem);
+    gap: clamp(2rem, 4vh, 4rem);
+    justify-content: space-between;
   }
 
-  .weather-content-body {
-    flex-direction: column;
-    gap: clamp(0.75rem, 1.5vh, 1rem);
-  }
-
-  .weather-main {
-    padding-top: 0;
-    gap: clamp(0.375rem, 0.75vh, 0.5rem);
-    align-items: center;
-    text-align: center;
-  }
-
-  /* P1: Emphasized temperature and condition */
-  .temperature {
-    font-size: clamp(3.5rem, 12vw, 7rem);
-  }
-
-  .weather-icon {
-    font-size: clamp(3rem, 10vw, 6rem);
-  }
-
-  .condition {
-    font-size: clamp(0.875rem, 2.5vw, 1.25rem);
-  }
-
-  .location-name {
-    font-size: clamp(1rem, 3vw, 1.75rem);
-  }
-
-  .current-time {
-    font-size: clamp(1.5rem, 3.5vw, 2.25rem);
-  }
-
-  .current-date {
-    font-size: clamp(0.75rem, 1.75vw, 1rem);
-  }
-
-  /* P2: Hide "feels like" in WeatherCurrent, show only details panel */
-  .feels-like {
+  /* P2: Hide details panel */
+  .weather-details-panel {
     display: none;
   }
 
-  .weather-details-panel {
-    align-self: center;
+  /* P3: Show forecast - smaller sizes, limit to 7 items (hide duplicates) */
+  .forecast-daily .forecast-day:nth-child(n + 8),
+  .forecast-hourly .forecast-hour:nth-child(n + 7) {
+    display: none;
   }
 
-  .weather-details-panel-body {
-    flex-direction: column;
-    gap: clamp(0.75rem, 1.5vh, 1rem);
-    align-items: center;
-  }
-
-  .detail-item {
-    text-align: center;
-  }
-
-  .detail-label {
-    font-size: clamp(0.625rem, 1.5vw, 0.875rem);
-  }
-
-  .detail-value {
-    font-size: clamp(1.25rem, 3vw, 2rem);
-  }
-
-  /* P3: Show forecast as slider - 3 items visible, scroll through all */
   .forecast-container {
-    overflow: hidden;
-    position: relative;
+    display: block;
   }
 
   .forecast-daily,
   .forecast-hourly {
-    display: flex !important;
-    gap: clamp(0.25rem, 0.75vw, 0.5rem);
-    animation: slideHorizontalTall 21s linear infinite !important;
-    will-change: transform;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(0.5rem, 1vh, 1rem);
   }
 
   .forecast-day,
   .forecast-hour {
-    min-width: calc((100% - 2 * clamp(0.25rem, 0.75vw, 0.5rem)) / 3);
-    flex-shrink: 0;
-    padding: clamp(0.375rem, 1vw, 0.625rem) clamp(0.375rem, 0.75vw, 0.5rem);
+    padding: clamp(0.75rem, 1.5vh, 1rem);
   }
 
-  .forecast-day {
+  .forecast-day-content,
+  .forecast-hour-content {
     display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
-  }
-
-  .forecast-day-content {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    gap: 0.25rem;
+    align-items: center;
+    gap: 4vh;
   }
 
   .forecast-icon {
-    font-size: clamp(1.5rem, 5vw, 3rem);
+    font-size: clamp(2rem, 4vh, 3.5rem);
   }
 
   .forecast-day-name,
   .forecast-time {
-    font-size: clamp(0.5rem, 5vh, 2rem);
+    font-size: clamp(1rem, 2.5vh, 1.75rem);
   }
 
   .forecast-high,
   .forecast-temp {
-    font-size: clamp(0.875rem, 2vw, 1.25rem);
+    font-size: clamp(1.5rem, 3vh, 2.25rem);
   }
 
   .forecast-low {
-    font-size: clamp(0.75rem, 1.75vw, 1rem);
+    font-size: clamp(1rem, 2.5vh, 1.75rem);
+  }
+
+  .weather-header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: clamp(1rem, 2vh, 2rem);
+  }
+
+  .location-info {
+    align-items: center;
+  }
+
+  .weather-content-body {
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(3rem, 6vh, 5rem);
+  }
+
+  .weather-main {
+    padding-top: 0;
+    gap: clamp(1rem, 2vh, 2rem);
+    align-items: center;
+    text-align: center;
+  }
+
+  /* P1: Moderate temperature sizes - using vh for consistent scaling */
+  .temperature {
+    font-size: clamp(5rem, 15vh, 10rem);
+  }
+
+  .weather-icon {
+    font-size: clamp(4rem, 12vh, 8rem);
+    order: -1;
+  }
+
+  .condition {
+    font-size: clamp(1.25rem, 3vh, 2.5rem);
+  }
+
+  /* P2: Hide "feels like" */
+  .feels-like {
+    display: none;
+  }
+
+  .location-name {
+    font-size: clamp(1.5rem, 4vh, 2.5rem);
+  }
+
+  .current-time {
+    font-size: clamp(2.5rem, 5vh, 3.5rem);
+  }
+
+  .current-date {
+    font-size: clamp(1rem, 2.5vh, 1.75rem);
+  }
+
+  .current-time-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
   }
 }
 
@@ -727,9 +725,9 @@
      Minimal content - Temperature + location only
      PRIORITY: P1 only (hide P2 and P3) */
   .weather-content {
-    padding: clamp(1rem, 2%, 1.5rem);
-    gap: clamp(1rem, 2vh, 2rem);
-    justify-content: center;
+    padding: clamp(2rem, 4%, 3rem);
+    gap: clamp(2rem, 4vh, 4rem);
+    justify-content: space-between;
   }
 
   /* P2: Hide details panel */
@@ -737,16 +735,57 @@
     display: none;
   }
 
-  /* P3: Hide forecast */
-  .forecast-container {
+  /* P3: Show forecast - bigger sizes, limit to 7 items (hide duplicates) */
+  .forecast-daily .forecast-day:nth-child(n + 8),
+  .forecast-hourly .forecast-hour:nth-child(n + 7) {
     display: none;
+  }
+
+  .forecast-container {
+    display: block;
+  }
+
+  .forecast-daily,
+  .forecast-hourly {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(0.5rem, 1vh, 1rem);
+  }
+
+  .forecast-day,
+  .forecast-hour {
+    padding: clamp(1rem, 2vw, 1.5rem);
+  }
+
+  .forecast-day-content,
+  .forecast-hour-content {
+    display: flex;
+    align-items: center;
+  }
+
+  .forecast-icon {
+    font-size: clamp(3rem, 8vw, 5rem);
+  }
+
+  .forecast-day-name,
+  .forecast-time {
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+  }
+
+  .forecast-high,
+  .forecast-temp {
+    font-size: clamp(2rem, 5vw, 3rem);
+  }
+
+  .forecast-low {
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
   }
 
   .weather-header {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    gap: clamp(0.5rem, 1vh, 0.75rem);
+    gap: clamp(1rem, 2vh, 2rem);
   }
 
   .location-info {
@@ -756,28 +795,28 @@
   .weather-content-body {
     flex-direction: column;
     align-items: center;
-    gap: clamp(1.5rem, 3vh, 2.5rem);
+    gap: clamp(3rem, 6vh, 5rem);
   }
 
   .weather-main {
     padding-top: 0;
-    gap: clamp(0.5rem, 1vh, 0.75rem);
+    gap: clamp(1rem, 2vh, 2rem);
     align-items: center;
     text-align: center;
   }
 
-  /* P1: Big, bold temperature */
+  /* P1: Big, bold temperature - MUCH BIGGER */
   .temperature {
-    font-size: clamp(3.5rem, 15vw, 6rem);
+    font-size: clamp(8rem, 30vw, 15rem);
   }
 
   .weather-icon {
-    font-size: clamp(3rem, 12vw, 5rem);
+    font-size: clamp(6rem, 24vw, 12rem);
     order: -1;
   }
 
   .condition {
-    font-size: clamp(0.875rem, 3.5vw, 1.25rem);
+    font-size: clamp(2rem, 7vw, 3.5rem);
   }
 
   /* P2: Hide "feels like" */
@@ -786,21 +825,21 @@
   }
 
   .location-name {
-    font-size: clamp(1rem, 4vw, 1.5rem);
+    font-size: clamp(2.5rem, 8vw, 4rem);
   }
 
   .current-time {
-    font-size: clamp(1.5rem, 5vw, 2rem);
+    font-size: clamp(3.5rem, 10vw, 5rem);
   }
 
   .current-date {
-    font-size: clamp(0.75rem, 2.5vw, 1rem);
+    font-size: clamp(1.5rem, 5vw, 2.5rem);
   }
 
   .current-time-container {
     flex-direction: column;
     align-items: center;
-    gap: 0.125rem;
+    gap: 0.5rem;
   }
 }
 
