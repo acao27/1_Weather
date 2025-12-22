@@ -1,0 +1,181 @@
+/**
+ * TelemetryOS Design Tokens
+ *
+ * CSS custom properties derived from the TelemetryOS SDK design system.
+ * These values match the platform's visual language for consistency.
+ *
+ * Reference: @telemetryos/sdk development-application-host-ui components
+ */
+
+:root {
+  /* ===================
+     COLOR PALETTE
+     =================== */
+
+  /* Accent - TelemetryOS Amber/Gold */
+  --color-accent: #f8b334;
+  --color-accent-muted: #c9c1b1;
+
+  /* Semantic */
+  --color-success: hsl(142, 76%, 36%);
+  --color-warning: hsl(45, 93%, 47%);
+  --color-error: hsl(6, 86%, 61%);
+  --color-error-hover: hsl(6, 86%, 55%);
+  --color-error-active: hsl(6, 86%, 50%);
+  --color-info: hsl(201, 96%, 32%);
+
+  /* ===================
+     LIGHT THEME (default)
+     =================== */
+
+  /* Background & Surface - Light (warm off-white) */
+  --color-background: #eee9df;
+  --color-background-subtle: #e5e0d6;
+  --color-surface: #ffffff;
+  --color-surface-raised: #f5f2ec;
+
+  /* Text - Light */
+  --color-text: hsl(210, 29%, 15%);
+  --color-text-muted: hsl(215, 16%, 47%);
+
+  /* Borders - Light */
+  --color-border: hsl(214, 32%, 91%);
+  --color-border-subtle: hsl(214, 32%, 95%);
+
+  /* ===================
+     TYPOGRAPHY
+     =================== */
+
+  /* Font Families - Rubik is the TelemetryOS brand font */
+  --font-family-base: "Rubik", sans-serif;
+  --font-family-heading: var(--font-family-base);
+  --font-family-mono: ui-monospace, "SF Mono", monospace;
+
+  /* Font Sizes - Fluid with clamp() */
+  --font-size-xs: clamp(0.6875rem, 0.8vw + 0.5rem, 0.75rem); /* ~11-12px */
+  --font-size-sm: clamp(0.75rem, 1vw + 0.5rem, 0.8125rem); /* ~12-13px */
+  --font-size-base: clamp(0.8125rem, 1.2vw + 0.5rem, 0.875rem); /* ~13-14px */
+  --font-size-lg: clamp(0.875rem, 1.5vw + 0.5rem, 1rem); /* ~14-16px */
+  --font-size-xl: clamp(1rem, 2vw + 0.5rem, 1.25rem); /* ~16-20px */
+  --font-size-2xl: clamp(1.25rem, 2.5vw + 0.5rem, 1.5rem); /* ~20-24px */
+  --font-size-3xl: clamp(1.5rem, 3vw + 0.5rem, 2rem); /* ~24-32px */
+
+  /* Font Weights */
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* Line Heights */
+  --line-height-tight: 1.2;
+  --line-height-base: 1.5;
+  --line-height-relaxed: 1.75;
+
+  /* ===================
+     SPACING
+     =================== */
+
+  /* Spacing Scale - Based on SDK patterns */
+  --space-1: 0.25rem; /* 4px */
+  --space-2: 0.375rem; /* 6px - label margin */
+  --space-3: 0.5rem; /* 8px - input padding */
+  --space-4: 0.75rem; /* 12px - field/item spacing */
+  --space-5: 1rem; /* 16px - section padding */
+  --space-6: 1.5rem; /* 24px - section margin */
+  --space-8: 2rem; /* 32px */
+  --space-10: 2.5rem; /* 40px */
+  --space-12: 3rem; /* 48px */
+
+  /* ===================
+     SIZING
+     =================== */
+
+  /* Input/Button Heights - From SDK */
+  --height-input: 2.5rem; /* 40px */
+  --height-button: 2.25rem; /* 36px */
+  --height-button-sm: 2rem; /* 32px */
+  --height-nav-button: 3rem; /* 48px */
+
+  /* ===================
+     BORDERS & RADIUS
+     =================== */
+
+  /* Border Radius - From SDK */
+  --radius-sm: 0.375rem; /* 6px - inputs, buttons */
+  --radius-md: 0.5rem; /* 8px - cards, items */
+  --radius-lg: 0.75rem; /* 12px - larger cards */
+  --radius-full: 9999px; /* pills, avatars */
+
+  --border-width: 1px;
+
+  /* ===================
+     SHADOWS
+     =================== */
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.15);
+
+  /* ===================
+     TRANSITIONS
+     =================== */
+
+  /* SDK uses 300ms ease-in-out consistently */
+  --transition-fast: 150ms ease-in-out;
+  --transition-base: 300ms ease-in-out;
+  --transition-slow: 500ms ease-in-out;
+
+  /* ===================
+     FOCUS STATES
+     =================== */
+
+  --focus-ring-color: var(--color-primary);
+  --focus-ring-width: 1px;
+  --focus-ring-offset: 0;
+}
+
+/* ===================
+   DARK THEME
+   Matches TelemetryOS SDK dark UI
+   =================== */
+
+[data-theme="dark"] {
+  /* Background & Surface - Dark (TelemetryOS brand) */
+  --color-background: hsl(210, 28%, 8%);
+  --color-background-subtle: hsl(212, 28%, 10%);
+  --color-surface: hsl(211, 30%, 15%);
+  --color-surface-raised: hsl(210, 5%, 31%);
+
+  /* Text - Dark */
+  --color-text: hsl(210, 40%, 100%);
+  --color-text-muted: hsl(215, 20.2%, 80%);
+
+  /* Borders - Dark */
+  --color-border: hsl(212, 24%, 19%);
+  --color-border-subtle: hsl(212, 24%, 15%);
+
+  /* Adjusted shadows for dark theme */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.2);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.4);
+  --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.5);
+}
+
+/* ===================
+   FONT IMPORT
+   =================== */
+
+/*
+ * Include Rubik font in your application:
+ *
+ * Option 1 - Google Fonts (recommended):
+ * <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
+ *
+ * Option 2 - npm package:
+ * npm install @fontsource/rubik
+ * import '@fontsource/rubik/400.css';
+ * import '@fontsource/rubik/500.css';
+ * import '@fontsource/rubik/600.css';
+ * import '@fontsource/rubik/700.css';
+ */
