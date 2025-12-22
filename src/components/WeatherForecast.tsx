@@ -14,10 +14,14 @@ export function WeatherForecast({
   tempUnit,
 }: WeatherForecastProps) {
   if (forecastRange === "24h" && hourlyForecast) {
+    const hours = hourlyForecast.slice(0, 6);
+    // Duplicate first 3 items for infinite carousel (used by Tall Rectangle zone)
+    const hoursWithDuplicates = [...hours, ...hours.slice(0, 3)];
+
     return (
       <div className="forecast-hourly">
-        {hourlyForecast.slice(0, 6).map((hour, index) => (
-          <div key={index} className="forecast-hour">
+        {hoursWithDuplicates.map((hour, index) => (
+          <div key={`hour-${index}`} className="forecast-hour">
             <div>
               <div className="forecast-time">{hour.time}</div>
               <div className="forecast-temp">
@@ -32,10 +36,14 @@ export function WeatherForecast({
   }
 
   if (forecastRange === "1week" && dailyForecast) {
+    const days = dailyForecast.slice(0, 7);
+    // Duplicate first 3 items for infinite carousel (used by Tall Rectangle zone)
+    const daysWithDuplicates = [...days, ...days.slice(0, 3)];
+
     return (
       <div className="forecast-daily">
-        {dailyForecast.slice(0, 7).map((day, index) => (
-          <div key={index} className="forecast-day">
+        {daysWithDuplicates.map((day, index) => (
+          <div key={`day-${index}`} className="forecast-day">
             <div className="forecast-day-name">{day.day}</div>
             <div className="forecast-day-content">
               <div>
