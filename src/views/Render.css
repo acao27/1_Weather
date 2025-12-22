@@ -722,23 +722,19 @@
 
 @container weather-zone (aspect-ratio > 3.0) {
   /* Extreme Wide (Ticker Strip)
-     Minimal horizontal layout - Temperature + location only
-     PRIORITY: P1 only (hide P2 and P3)
+     Minimal horizontal layout - Temperature + location + forecast slider
+     PRIORITY: P1 only (hide P2, show one forecast card at a time)
      Using vh units since height is the limiting dimension */
   .weather-content {
     padding: clamp(1rem, 4vh, 4rem);
     gap: clamp(1rem, 4vh, 3rem);
     flex-direction: row;
     align-items: center;
+    justify-content: space-around;
   }
 
   /* P2: Hide details panel */
   .weather-details-panel {
-    display: none;
-  }
-
-  /* P3: Hide forecast */
-  .forecast-container {
     display: none;
   }
 
@@ -760,9 +756,7 @@
   }
 
   .weather-content-body {
-    flex: 1;
     justify-content: center;
-    gap: clamp(4rem, 20vh, 12rem);
   }
 
   .weather-main {
@@ -772,7 +766,7 @@
     padding-top: 0;
   }
 
-  /* P1: Temperature and condition only */
+  /* P1: Temperature only (hide condition) */
   .temperature {
     font-size: clamp(6rem, 36vh, 24rem);
     line-height: 1;
@@ -783,12 +777,128 @@
   }
 
   .condition {
-    font-size: clamp(2rem, 8vh, 5rem);
+    display: none;
   }
 
   /* P2: Hide "feels like" */
   .feels-like {
     display: none;
+  }
+
+  /* P3: Show forecast as vertical slider - one card at a time */
+  .forecast-container {
+    display: flex;
+    flex-shrink: 0;
+    min-width: fit-content;
+    overflow: hidden;
+    height: 100%;
+    align-items: center;
+  }
+
+  .forecast-daily,
+  .forecast-hourly {
+    width: 22vw;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    position: relative;
+    height: clamp(8rem, 40vh, 16rem);
+    overflow: hidden;
+  }
+
+  .forecast-day,
+  .forecast-hour {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: space-around;
+    background: var(--color-background);
+    border: none;
+    animation: slideVertical 6s ease-in-out infinite;
+    position: absolute;
+    opacity: 0;
+    transform: translateY(100%);
+  }
+
+  /* Show cards one at a time with staggered animation */
+  .forecast-day:nth-child(1),
+  .forecast-hour:nth-child(1) {
+    animation-delay: 0s;
+  }
+
+  .forecast-day:nth-child(2),
+  .forecast-hour:nth-child(2) {
+    animation-delay: 6s;
+  }
+
+  .forecast-day:nth-child(3),
+  .forecast-hour:nth-child(3) {
+    animation-delay: 12s;
+  }
+
+  .forecast-day:nth-child(4),
+  .forecast-hour:nth-child(4) {
+    animation-delay: 18s;
+  }
+
+  .forecast-day:nth-child(5),
+  .forecast-hour:nth-child(5) {
+    animation-delay: 24s;
+  }
+
+  .forecast-day:nth-child(6),
+  .forecast-hour:nth-child(6) {
+    animation-delay: 30s;
+  }
+
+  .forecast-day:nth-child(7),
+  .forecast-hour:nth-child(7) {
+    animation-delay: 36s;
+  }
+
+  .forecast-icon {
+    font-size: clamp(3rem, 20vh, 20rem);
+  }
+
+  .forecast-day-name,
+  .forecast-time {
+    font-size: clamp(1rem, 10vh, 10rem);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .forecast-high,
+  .forecast-temp {
+    font-size: clamp(2rem, 16vh, 16rem);
+    font-weight: var(--font-weight-bold);
+  }
+
+  .forecast-low {
+    font-size: clamp(1.5rem, 12vh, 6rem);
+  }
+}
+
+/* Vertical slide animation for forecast cards */
+@keyframes slideVertical {
+  0% {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  5% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  70% {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-100%);
   }
 }
 
