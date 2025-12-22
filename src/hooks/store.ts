@@ -20,7 +20,7 @@ export const useCycleDurationStoreState = createUseInstanceStoreState<number>('c
 export const useTransitionStyleStoreState = createUseInstanceStoreState<'fade' | 'slide' | 'instant'>('transitionStyle', 'fade')
 
 // Forecast Settings
-export const useForecastRangeStoreState = createUseInstanceStoreState<'24h' | '3day' | '1week'>('forecastRange', '3day')
+export const useForecastRangeStoreState = createUseInstanceStoreState<'24h' | '1week'>('forecastRange', '24h')
 export const useTempUnitsStoreState = createUseInstanceStoreState<'imperial' | 'metric'>('tempUnits', 'imperial')
 
 // Time & Date

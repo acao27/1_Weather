@@ -1,7 +1,7 @@
 import type { ForecastDay, HourlyForecast } from "../types/weather";
 
 interface WeatherForecastProps {
-  forecastRange: "24h" | "3day" | "1week";
+  forecastRange: "24h" | "1week";
   dailyForecast?: ForecastDay[];
   hourlyForecast?: HourlyForecast[];
   tempUnit: string;
@@ -31,19 +31,22 @@ export function WeatherForecast({
     );
   }
 
-  if (dailyForecast) {
-    const numDays = forecastRange === "3day" ? 3 : 7;
+  if (forecastRange === "1week" && dailyForecast) {
     return (
       <div className="forecast-daily">
-        {dailyForecast.slice(0, numDays).map((day, index) => (
+        {dailyForecast.slice(0, 7).map((day, index) => (
           <div key={index} className="forecast-day">
             <div className="forecast-day-name">{day.day}</div>
-            <div className="forecast-icon">{day.icon}</div>
-            <div className="forecast-high">
-              {day.high}°{tempUnit === "imperial" ? "F" : "C"}
-            </div>
-            <div className="forecast-low">
-              {day.low}°{tempUnit === "imperial" ? "F" : "C"}
+            <div className="forecast-day-content">
+              <div>
+                <div className="forecast-high">
+                  {day.high}°{tempUnit === "imperial" ? "F" : "C"}
+                </div>
+                <div className="forecast-low">
+                  {day.low}°{tempUnit === "imperial" ? "F" : "C"}
+                </div>
+              </div>
+              <div className="forecast-icon">{day.icon}</div>
             </div>
           </div>
         ))}

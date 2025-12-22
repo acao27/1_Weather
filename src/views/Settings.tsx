@@ -258,7 +258,6 @@ export function Settings() {
         <SettingsSelectFrame>
           <select value={forecastRange} onChange={(e) => setForecastRange(e.target.value as any)}>
             <option value="24h">24-hour view (hourly)</option>
-            <option value="3day">3-day view (daily)</option>
             <option value="1week">1-week view (weekly)</option>
           </select>
         </SettingsSelectFrame>
